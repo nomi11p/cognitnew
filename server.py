@@ -77,8 +77,8 @@ def home():
     user = flask.session.get("user")
     guest = flask.session.get("guest")
 
-    if not user and not guest:
-        return flask.redirect("/login")
+    # if not user and not guest:
+    #     return flask.redirect("/login")
 
     return flask.render_template("ui.html")
 
