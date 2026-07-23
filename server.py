@@ -83,9 +83,9 @@ def home():
     return flask.render_template("ui.html")
 
 
-@app.route("/login")
-def login_page():
-    return flask.render_template("ui.html")
+# @app.route("/login")
+# def login_page():
+#     return flask.render_template("ui.html")
 
 
 @app.route("/guest")
