@@ -456,5 +456,19 @@ def premium_status():
     })
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+@app.route("/chat", methods=["POST"])
+def chat():
+
+    data = request.get_json()
+
+    message = data.get("message", "")
+
+    reply = "Hello from Cognit!"
+
+    return jsonify({
+        "reply": reply
+    })
+
+    #from flask import Flask, request, jsonify
+
+     # app = Flask(__name__)
