@@ -5,8 +5,8 @@ import requests
 import flask
 from authlib.integrations.flask_client import OAuth
 from flask_cors import CORS
-
-app = Flask(__name__)
+from flask import Flask, request, jsonify
+app = flask.Flask(__name__)
 CORS(app)
 from database import (
     DB_LOCK,
@@ -17,9 +17,7 @@ from database import (
     save_anonymized_chat,
 )
 from manager import add_error, add_request, generate_response, get_stats, start_manager
-from flask import Flask, request, jsonify
 
-app = Flask(__name__)
 
 app = flask.Flask(
     __name__,
