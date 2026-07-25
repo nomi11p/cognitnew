@@ -1,7 +1,7 @@
 import hashlib
 import os
 import secrets
-
+import requests
 import flask
 from authlib.integrations.flask_client import OAuth
 
@@ -14,7 +14,9 @@ from database import (
     save_anonymized_chat,
 )
 from manager import add_error, add_request, generate_response, get_stats, start_manager
+from flask import Flask, request, jsonify
 
+app = Flask(__name__)
 
 app = flask.Flask(
     __name__,
@@ -469,6 +471,3 @@ def chat():
         "reply": reply
     })
 
-    #from flask import Flask, request, jsonify
-
-     # app = Flask(__name__)
