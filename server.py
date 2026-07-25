@@ -4,7 +4,10 @@ import secrets
 import requests
 import flask
 from authlib.integrations.flask_client import OAuth
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 from database import (
     DB_LOCK,
     conn,
@@ -458,16 +461,10 @@ def premium_status():
     })
 
 
-@app.route("/chat", methods=["POST"])
-def chat():
-
-    data = request.get_json()
-
-    message = data.get("message", "")
-
-    reply = "Hello from Cognit!"
-
-    return jsonify({
-        "reply": reply
-    })
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
 
