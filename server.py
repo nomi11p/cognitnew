@@ -1,13 +1,26 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+app = Flask(__name__,template_folder="templates",
+    static_folder="static",)
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",
+        "allow_headers": ["Content-Type"],
+        "methods": ["GET", "POST", "OPTIONS"]
+    }
+})
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    return response
 import hashlib
 import os
 import secrets
 import requests
 import flask
 from authlib.integrations.flask_client import OAuth
-from flask_cors import CORS
-from flask import Flask, request, jsonify
-app = flask.Flask(__name__)
-CORS(app)
 from database import (
     DB_LOCK,
     conn,
@@ -19,11 +32,7 @@ from database import (
 from manager import add_error, add_request, generate_response, get_stats, start_manager
 
 
-app = flask.Flask(
-    __name__,
-    template_folder="templates",
-    static_folder="static",
-)
+
 
 # Put FLASK_SECRET_KEY in .env later for permanent login sessions.
 app.secret_key = os.getenv("FLASK_SECRET_KEY") or secrets.token_urlsafe(32)
@@ -38,11 +47,28 @@ UPI_ID = "+91 70017 42835"
 ADMIN_EMAIL = "bhoivaidik@gmail.com"
 
 MOODS = {
-    "normal": "You are Cognit AI. Be helpful and balanced.",
-    "study": "You are a teacher.",
-    "coding": "You are a programmer.",
-    "creative": "Be creative.",
-    "business": "Be professional.",
+
+    "normal": 
+        "You are Cognit AI. Be helpful, balanced, and friendly.",
+
+    "study":
+        "You are a patient teacher. Explain concepts clearly with examples.",
+
+    "coding":
+        "You are an expert programmer. Give technical explanations, code help, and debugging guidance.",
+
+    "creative":
+        "You are a creative partner. Help with ideas, stories, designs, and brainstorming.",
+
+    "business":
+        "You are a professional business assistant. Give structured and practical advice.",
+
+    "research":
+        "You are a research assistant. Analyze information carefully and explain findings.",
+
+    "chill":
+        "You are a relaxed friendly assistant. Keep the conversation casual and enjoyable.",
+
 }
 
 
@@ -286,10 +312,15 @@ def account():
         "premium": bool(user[2]),
     })
 
-
 @app.route("/chat", methods=["POST"])
 def chat():
+    print("RAW DATA:", flask.request.get_json())
+    
     data = flask.request.get_json(silent=True) or {}
+
+ # @app.route("/chat", methods=["POST"])
+ # def chat():
+    data = flask.request.get_json()
     prompt = str(data.get("prompt", "")).strip()
     mood = data.get("mood", "normal")
     user = flask.session.get("user", "guest")
@@ -355,6 +386,7 @@ Rules:
 - Always follow the user's mood instructions.
 - Do not request personal data.
 - Do not reveal private details from chat history.
+-you should say hello only one time not everytime.
 
 {mood_text}
 
@@ -459,10 +491,13 @@ def premium_status():
     })
 
 
+
+
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+
     app.run(
         host="0.0.0.0",
-        port=5000,
-        debug=True
+        port=port,
+        debug=False
     )
-
