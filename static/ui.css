@@ -56,7 +56,7 @@ body{
 ========================= */
 
 .sidebar{
-    width:280px;
+    width:260px;
     background:#111827;
     border-right:1px solid #1f2937;
     display:flex;
@@ -140,6 +140,7 @@ body{
 
 .main{
     flex:1;
+    min-width:0;
     display:flex;
     flex-direction:column;
     height:100vh;
@@ -282,9 +283,9 @@ body{
 /* =========================
    CHAT
 ========================= */
-
 .chat{
     flex:1;
+    min-height:0;
     overflow-y:auto;
     padding:20px;
     display:flex;
@@ -438,9 +439,6 @@ body{
         overflow-x: hidden;
     }
 
-    .sidebar {
-        display: none;
-    }
 
     .chat-container {
         width: 100%;
