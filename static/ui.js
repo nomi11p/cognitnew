@@ -280,5 +280,5 @@ document
     );
 
     /* PROJECTS */
-    safeBind("createProjectBtn", createProject);
+   
 };
