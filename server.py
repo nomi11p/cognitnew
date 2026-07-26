@@ -101,6 +101,16 @@ github = oauth.register(
 )
 
 
+from flask import send_from_directory
+
+@app.route("/download")
+def download_apk():
+    return send_from_directory(
+        "static/download",
+        "Cognit.apk",
+        as_attachment=True
+    )
+
 @app.route("/")
 def home():
     user = flask.session.get("user")
