@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "645040726099",
+    "project_id": "cognit-infinity",
+    "storage_bucket": "cognit-infinity.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645040726099:android:91eba52cbc92ced5bba6a6",
+        "android_client_info": {
+          "package_name": "com.cognit.infinity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAQxwFPq4csKPBTIJybWfN_H9qW8MPNJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645040726099:android:3d353698180f966cbba6a6",
+        "android_client_info": {
+          "package_name": "com.example.cognit_app_all_accesd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAQxwFPq4csKPBTIJybWfN_H9qW8MPNJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
