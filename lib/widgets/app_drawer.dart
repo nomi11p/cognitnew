@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'banner_ad.dart';
 
 class AppDrawer extends StatefulWidget {
-   const AppDrawer({super.key});
+  const AppDrawer({super.key});
 
   @override
   State<AppDrawer> createState() => _AppDrawerState();
 }
 
-
 class _AppDrawerState extends State<AppDrawer> {
-
   String selectedMood = "Normal";
-
 
   final List<String> moods = [
     "Normal",
@@ -22,24 +20,17 @@ class _AppDrawerState extends State<AppDrawer> {
     "Research",
   ];
 
-
   @override
   Widget build(BuildContext context) {
-
     return Drawer(
-
       child: ListView(
-
         padding: EdgeInsets.zero,
-
         children: [
 
           const DrawerHeader(
-
             decoration: BoxDecoration(),
 
             child: Column(
-
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
@@ -60,11 +51,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
 
               ],
-
             ),
-
           ),
-
 
 
           const Padding(
@@ -106,9 +94,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
 
-
           Divider(),
-
 
 
           const Padding(
@@ -149,9 +135,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
 
-
           Divider(),
-
 
 
           const Padding(
@@ -164,6 +148,11 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
 
+
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: BannerAdWidget(),
+          ),
 
 
           ...moods.map((mood) {
@@ -184,6 +173,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
               selected: active,
 
+
               selectedTileColor:
                   Colors.blue.withOpacity(0.2),
 
@@ -200,12 +190,8 @@ class _AppDrawerState extends State<AppDrawer> {
 
           }),
 
-
         ],
-
       ),
-
     );
-
   }
 }
